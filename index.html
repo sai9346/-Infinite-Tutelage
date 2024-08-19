@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ditch Dollar Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 240px;
+            background-color: #9b59b6;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .nav-item {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            margin-right: 10px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .columns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dashboard-column {
+            width: 226px;
+            padding-right: 10px;
+        }
+
+        .overview-column {
+            flex: 1;
+            padding: 0 10px;
+            border-left: 1px solid #ddd;
+        }
+
+        .trading-column {
+            width: 326px;
+            padding-left: 10px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .quick-link {
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .quick-link i {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .overview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .toggle-buttons {
+            display: flex;
+        }
+
+        .toggle-button {
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+        }
+
+        .toggle-button.active {
+            background-color: #9b59b6;
+            color: white;
+        }
+
+        .chart {
+            height: 300px;
+            position: relative;
+            padding-top: 20px;
+            flex-grow: 1;
+        }
+
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            background-color: #9b59b6;
+        }
+
+        .account {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .account:last-child {
+            border-bottom: none;
+        }
+
+        .account-balance {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .trade {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .trade-pair {
+            font-weight: bold;
+        }
+
+        .trade-type {
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .trade-type.long {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .trade-type.short {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .trade-value {
+            font-weight: bold;
+        }
+
+        .trade-value.positive {
+            color: #2ecc71;
+        }
+
+        .trade-value.negative {
+            color: #e74c3c;
+        }
+
+        .user-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar Column -->
+        <div class="sidebar">
+            <div class="logo">Ditch Dollar</div>
+            <div class="nav-item"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+            <div class="nav-item"><i class="fas fa-user"></i> CRM</div>
+            <div class="nav-item"><i class="fas fa-project-diagram"></i> MAM</div>
+            <div class="nav-item"><i class="fas fa-chart-line"></i> PAMM</div>
+            <div class="nav-item"><i class="fas fa-exchange-alt"></i> Trade</div>
+            <div class="nav-item"><i class="fas fa-wallet"></i> Wallet</div>
+            <div class="nav-item"><i class="fas fa-users"></i> Accounts</div>
+            <div class="nav-item"><i class="fas fa-history"></i> History</div>
+            <div class="user-info">
+                <div>Shyam Shakur</div>
+                <div>shyam01.shakur@m...</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Dashboard</h1>
+                <input type="text" class="search-bar" placeholder="Search...">
+            </div>
+
+            <div class="columns">
+               
+
+                <!-- Overview Column -->
+                <div class="overview-column">
+                    <div class="card">
+                        <h2>Quick Links</h2>
+                        <div class="quick-links-grid">
+                            <div class="quick-link"><i class="fas fa-arrow-circle-down"></i> Deposit</div>
+                            <div class="quick-link"><i class="fas fa-arrow-circle-up"></i> Withdraw</div>
+                            <div class="quick-link"><i class="fas fa-cog"></i> Settings</div>
+                            <div class="quick-link"><i class="fas fa-check-circle"></i> Verification</div>
+                            <div class="quick-link"><i class="fas fa-gift"></i> Bonuses</div>
+                            <div class="quick-link"><i class="fas fa-server"></i> MT5</div>
+                            <div class="quick-link"><i class="fas fa-exchange-alt"></i> Transfer</div>
+                            <div class="quick-link"><i class="fas fa-history"></i> History</div>
+                            <div class="quick-link"><i class="fas fa-handshake"></i> Partner</div>
+                            <div class="quick-link"><i class="fas fa-sync"></i> Exchange</div>
+                            <div class="quick-link"><i class="fas fa-chart-bar"></i> Analytics</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="overview-header">
+                            <h2>Overview</h2>
+                            <div class="toggle-buttons">
+                                <button class="toggle-button">Monthly</button>
+                                <button class="toggle-button active">Yearly</button>
+                            </div>
+                            <a href="#"><i class="fas fa-download"></i> Download Report</a>
+                        </div>
+                        <div class="chart">
+                            <div class="chart-bar" style="height: 50%; left: 0%;"></div>
+                            <div class="chart-bar" style="height: 30%; left: 8%;"></div>
+                            <div class="chart-bar" style="height: 70%; left: 16%;"></div>
+                            <div class="chart-bar" style="height: 20%; left: 24%;"></div>
+                            <div class="chart-bar" style="height: 90%; left: 32%;"></div>
+                            <div class="chart-bar" style="height: 60%; left: 40%;"></div>
+                            <div class="chart-bar" style="height: 50%; left: 48%;"></div>
+                            <div class="chart-bar" style="height: 80%; left: 56%;"></div>
+                            <div class="chart-bar" style="height: 40%; left: 64%;"></div>
+                            <div class="chart-bar" style="height: 70%; left: 72%;"></div>
+                            <div class="chart-bar" style="height: 85%; left: 80%;"></div>
+                            <div class="chart-bar" style="height: 85%; left: 88%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Accounts Column -->
+                <div class="trading-column">
+                    <div class="card">
+                        <h2>Trading Accounts</h2>
+                        <div class="account">
+                            <div><i class="fas fa-user-circle"></i> Master Account</div>
+                            <div>MT5 #278382</div>
+                            <div class="account-balance">0.00 USD</div>
+                        </div>
+                        <div class="account">
+                            <div><i class="fas fa-user-circle"></i> Master Account</div>
+                            <div>MT5 #187382</div>
+                            <div class="account-balance">1,304.00 USD</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2>Recent Trades</h2>
+                        <div class="trade">
+                            <div class="trade-pair">EUR/USD</div>
+                            <div class="trade-type long">Long</div>
+                            <div class="trade-value positive">+1.45%</div>
+                        </div>
+                        <div class="trade">
+                            <div class="trade-pair">GBP/USD</div>
+                            <div class="trade-type short">Short</div>
+                            <div class="trade-value negative">-0.76%</div>
+                        </div>
+                        <div class="trade">
+                            <div class="trade-pair">USD/JPY</div>
+                            <div class="trade-type long">Long</div>
+                            <div class="trade-value positive">+0.34%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
